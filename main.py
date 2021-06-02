@@ -7,6 +7,7 @@ import anaconda
 import bird
 import menu
 
+
 squire.screen = pygame.display.set_mode((640, 640))
 pygame.display.set_caption("ANACONDA POWER")
 

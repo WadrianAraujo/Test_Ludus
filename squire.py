@@ -1,10 +1,12 @@
 import pygame
 import sys
+import random
 
 screen = None
 clock = pygame.time.Clock()
 fps = 60
 BLACK = (0, 0, 0)
+size = (640, 640)
 
 
 def draw(surf, pos):
