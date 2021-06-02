@@ -27,12 +27,12 @@ LEFT = 3
 pygame.init()
 
 snake = [(300, 300), (310, 300), (320, 300)]
-snake_skin = pygame.Surface((10, 10))
+snake_skin = pygame.Surface((20, 20))
 snake_skin.fill((153, 51, 153))
 
 apple_pos = on_grid_random()
 apple = pygame.image.load("assets/apple.png")
-apple = pygame.transform.scale(apple, (10, 10))
+apple = pygame.transform.scale(apple, (20, 20))
 direction = RIGHT
 
 clock = pygame.time.Clock()

@@ -5,18 +5,17 @@ import squire
 #pygame.mixer.music.play(-1)
 
 background = pygame.image.load('assets/grass.png')
+title = pygame.image.load('assets/title.png')
+title = pygame.transform.scale(title, (350, 60))
+start_button = pygame.image.load('assets/start.png')
+quit_button = pygame.image.load('assets/quit.png')
 
-title_font = pygame.font.Font('assets/PressStart2P.ttf', 30)
-title_text = title_font.render('Anaconda', True, squire.BLACK)
-title_rect = title_text.get_rect(center=(330, 205))
+start_rect = start_button.get_rect(center=(320, 307))
+quit_rect = quit_button.get_rect(center=(320, 350))
 
+font_creator = pygame.font.Font('assets/PressStart2P.ttf', 15)
 font = pygame.font.Font('assets/PressStart2P.ttf', 18)
-play_text = font.render('play', True, squire.BLACK)
-play_rect = play_text.get_rect(center=(330, 307))
-credits_text = font.render('credits', True, squire.BLACK)
-credits_rect = credits_text.get_rect(center=(330, 370))
-quit_text = font.render('quit', True, squire.BLACK)
-quit_rect = quit_text.get_rect(center=(330, 433))
+credits_text = font_creator.render('by: Mortarion(Wadrian Araujo)', True, squire.BLACK)
 
 
 def start():
@@ -31,17 +30,14 @@ def update():
     if pygame.mouse.get_pressed()[0]:
         pos = pygame.mouse.get_pos()
 
-        if play_rect.collidepoint(pos):
+        if start_rect.collidepoint(pos):
             squire.run('anaconda')
             squire.run('gameover')
-        elif credits_rect.collidepoint(pos):
-            squire.run('credits')
+
         elif quit_rect.collidepoint(pos):
             squire.quit()
 
-   # squire.clear_screen()
     squire.draw(background, (0, 0))
-    squire.draw(title_text, title_rect)
-    squire.draw(play_text, play_rect)
-    squire.draw(credits_text, credits_rect)
-    squire.draw(quit_text, quit_rect)
+    squire.draw(title, (150, 120))
+    squire.draw(start_button, (250, 277))
+    squire.draw(quit_button, (250, 350))
