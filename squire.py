@@ -9,6 +9,7 @@ size = (640, 640)
 score = 0
 WHITE = 255, 255, 255
 
+
 def draw(surf, pos):
     screen.blit(surf, pos)
 

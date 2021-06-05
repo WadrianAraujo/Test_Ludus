@@ -9,8 +9,8 @@ size = (640, 640)
 
 # Generation of ramdomized coordinates
 def on_grid_random():
-    x = random.randint(0, size[0])
-    y = random.randint(40, size[1])
+    x = random.randint(0, size[0]-20)
+    y = random.randint(50, size[1]-20)
     return x // 15 * 15, y // 15 * 15
 
 
@@ -34,8 +34,7 @@ snake_heads = [pygame.transform.rotate(snake_head, 180),
                pygame.transform.rotate(snake_head, 90),
                snake_head,
                pygame.transform.rotate(snake_head, -90)]
-snake_v_body = pygame.image.load('assets/Objects/body_snake.png')
-snake_h_body = pygame.transform.rotate(snake_v_body, 90)
+snake_body = pygame.image.load('assets/Objects/body_snake.png')
 snake_skin = pygame.Surface((15, 15))
 snake_skin.fill((153, 51, 153))
 
@@ -58,14 +57,17 @@ bird_list = []
 aux = 5
 bird_list.append(bird.Bird())
 
+
 def start():
-    global snake, apple_pos, score, bird_cont
+    global snake, apple_pos, score, bird_cont, bird_list, aux
     snake = [(300, 300), (315, 300), (320, 300)]
     apple_pos = on_grid_random()
     score = 0
     bird_cont = 1
     pygame.mixer.music.load('assets/Sounds/background_game.wav')
     pygame.mixer.music.play(-1)
+    bird_list = [bird.Bird()]
+    aux = 5
     pass
 
 
@@ -98,7 +100,6 @@ def update():
     # Bird class call
     for i in range(len(bird_list)):
         bird_list[i].update()
-        
 
     # Score point
     if score == aux:
@@ -125,6 +126,12 @@ def update():
 
     # Collision snake
     for i in range(1, len(snake)-1):
+        for j in bird_list:
+            if j.collider(snake_body.get_rect(topleft=snake[i])):
+                squire.run("gameover")
+                start()
+                pygame.mixer.music.stop()
+
         if collision(snake[0], snake[i]):
             squire.run("gameover")
             start()
@@ -147,9 +154,5 @@ def update():
         print(bird_list[i].bird)
         squire.draw(bird_list[i].bird, (bird_list[i].bird_x, bird_list[i].bird_y))
 
-
     for i in range(1, len(snake)):
-        if snake[i - 1][0] != snake[i][0]:
-            squire.draw(snake_h_body, snake[i])
-        else:
-            squire.draw(snake_v_body, snake[i])
+        squire.draw(snake_body, snake[i])

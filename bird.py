@@ -16,7 +16,7 @@ class Bird:
         self.bird_y = random.randint(40, 640)
         self.bird_dx = 5
         self.bird_dy = 5
-        self.bird = 0
+        self.bird = bird_group[0]
         self.cont_image = 0
 
     def update(self):
@@ -43,3 +43,7 @@ class Bird:
         if self.bird_y > 620:  # Down wall
             self.bird_y = 620
             self.bird_dy *= -1
+
+    def collider(self, body):
+        rect = self.bird.get_rect(x=self.bird_x, y=self.bird_y)
+        return rect.colliderect(body)
