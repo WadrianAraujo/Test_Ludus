@@ -1,13 +1,13 @@
 import pygame
 import sys
-import random
 
 screen = None
 clock = pygame.time.Clock()
 fps = 60
-BLACK = (0, 0, 0)
+BLACK = 0, 0, 0
 size = (640, 640)
-
+score = 0
+WHITE = 255, 255, 255
 
 def draw(surf, pos):
     screen.blit(surf, pos)
