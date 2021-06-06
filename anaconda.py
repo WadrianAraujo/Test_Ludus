@@ -151,7 +151,6 @@ def update():
     squire.draw(snake_heads[direction], snake[0])
 
     for i in range(len(bird_list)):
-        print(bird_list[i].bird)
         squire.draw(bird_list[i].bird, (bird_list[i].bird_x, bird_list[i].bird_y))
 
     for i in range(1, len(snake)):

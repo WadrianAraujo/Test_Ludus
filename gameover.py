@@ -7,7 +7,6 @@ sound_gor = pygame.mixer.Sound('assets/Sounds/game_over.wav')
 background = pygame.image.load('assets/Background/gameover_background.jpg')
 background_rect = background.get_rect(center=(320, 320))
 
-
 font = pygame.font.Font('assets/PressStart2P.ttf', 12)
 replay_text = font.render('RESTART', True, squire.WHITE)
 replay_rect = replay_text.get_rect(center=(320, 415))
@@ -31,7 +30,6 @@ def update():
     score_font = pygame.font.Font('assets/PressStart2P.ttf', 30)
     score_text = score_font.render("SCORE: {}".format(anaconda.score), True, squire.WHITE)
     score_rect = score_text.get_rect(center=(320, 100))
-    print(anaconda.score)
 
     if pygame.mouse.get_pressed()[0]:
         pos = pygame.mouse.get_pos()
